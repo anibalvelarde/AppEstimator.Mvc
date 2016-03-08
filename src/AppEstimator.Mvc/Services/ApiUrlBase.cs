@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -38,7 +39,7 @@ namespace AppEstimator.Mvc.Services
             else
             {
                 this.Scheme = "https";
-                this.Host = "microsoft-apiapp028ac38a36ca45de83ad447aa31e59fb.azurewebsites.net";
+                this.Host = ConfigurationManager.AppSettings["HostingSite"];
                 this.Port = 443;
             }          
         }
