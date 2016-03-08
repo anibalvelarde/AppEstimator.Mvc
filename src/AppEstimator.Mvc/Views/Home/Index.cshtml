@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "App Estimator MVC";
+}
+
+<div class="jumbotron">
+    <h1>Application Estimator</h1>
+    <p class="lead">If you like defining / documenting your systems using UML. This app can help you estimate the effort for that project by using Use Case Point estimation approach.</p>
+    <p><a href="https://en.wikipedia.org/wiki/Use_Case_Points" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Getting started</h2>
+        <p>
+            Start with your last Use Case diagram. As a guest user, create a new project and follow these steps:
+            <ul>
+                <li>Add each Actor</li>
+                <li>Add each Use Case</li>
+                <li>Adjust for Environmental Factors</li>
+                <li>Adjust for Technical Factors</li>
+                <li>Get job estimate!</li>
+            </ul> 
+        </p>
+        <p>@Html.ActionLink("Try It »", "Index", "Guest", null, new { @class = "btn btn-default" })</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Get more...</h2>
+        <p>If you like this tool, use it to quickly, rough-estimate your projects based on a Use Case diagram, even if it is just a sketch of a system.</p>
+        <p><a class="btn btn-default" href="http://appestimatormvc.azurewebsites.net/Account/Register">Register, Get more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Why I built this?</h2>
+        <p>Why not!? I'm a software developer living near the Twin Cities, USA. Active learner. Domain analyst. Solution designer. Perfecting the habit of starting and shipping software solutions.</p>
+        <p><a class="btn btn-default" href="https://www.linkedin.com/in/anibalvelarde">My LinkedIn &raquo;</a></p>
+    </div>
+</div>

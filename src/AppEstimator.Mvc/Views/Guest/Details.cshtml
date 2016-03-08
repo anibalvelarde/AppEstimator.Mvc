@@ -1,0 +1,86 @@
+﻿@model AppEstimator.Mvc.Models.GuestUserViewModel
+
+@{
+    ViewBag.Title = "Guest User Details:";
+}
+
+<p>
+    <table class="table">
+        <tr class="info">
+            <td colspan="2" width="85%" style="vertical-align:middle">
+                <h2>@ViewBag.Title</h2>
+            </td>
+            <td width="15%" style="vertical-align:middle;text-align:right">
+                @Html.ActionLink("« Back", "Index", "Guest", null, new { @class = "btn btn-primary btn-sm" })
+            </td>
+        </tr>
+        <tr>
+            <td width="30%" align="center">
+                <b>User Id:</b>
+            </td>
+            <td align="left" width="70%" colspan="2">
+                @Model.User.AppUserId
+            </td>
+        </tr>
+        <tr>
+            <td width="30%" align="center">
+                <b>User Name:</b>
+            </td>
+            <td align="left" width="70%" colspan="2">
+                @Model.User.Name
+            </td>
+        </tr>
+        <tr>
+            <td width="30%" align="center">
+                <b>App Estimator User Id:</b>
+            </td>
+            <td align="left" width="70%" colspan="2">
+                @Model.User.GitHubId.Trim()
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" align="center">
+                <table class="table">
+                    <thead>
+                        <tr class="info">
+                            <th style="text-align:left">@string.Format("{0} Estimates On Record Found", Model.Estimates.Count)</th>
+                            <th style="text-align:right">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Estimates.Count.Equals(0))
+                        {
+                                <tr class="warning">
+                                    <td colspan="2" align="center">
+                                        <h5>No Estimates have been defined yet for this user.</h5>
+                                    </td>
+                                </tr>
+                        }
+                        else
+                        {
+                            foreach (var estimate in Model.Estimates)
+                            {
+                                <tr>
+                                    <td>
+                                        <b>Project:</b> @estimate.ProjectName.Trim() <br />
+                                        <b>UCP Score:</b> ucp-score-here <br />
+                                        <b>Total Effort (hrs.):</b> total-hours-here
+                                    </td>
+                                    <td align="right" valign="middle">
+                                        @Html.ActionLink("Edit »", "Details", "Estimate", new { id = estimate.EstimateId }, new { @class = "btn btn-primary btn-sm" })
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr class="info">
+            <td colspan="3" style="vertical-align:middle;text-align:right">
+                @Html.ActionLink("« Back", "Index", "Guest", null, new { @class = "btn btn-primary btn-sm" })
+            </td>
+        </tr>
+    </table>
+</p>
+

@@ -1,0 +1,30 @@
+﻿@model List<AppEstimator.Web.Api.Models.AppUserInfo>
+
+@{
+    ViewBag.Title = "Pick a Guest User:";
+}
+
+    <p>
+        <table class="table">
+            <tr class="info">
+                <td colspan="2" width="85%" style="vertical-align:middle">
+                    <h2>@ViewBag.Title</h2>
+                </td>
+                <td width="15%" style="vertical-align:middle;text-align:right">
+                    @Html.ActionLink("« Back", "Index", "Home", null, new { @class = "btn btn-primary btn-sm" })
+                </td>
+            </tr>
+@foreach (var element in Model)
+{
+            <tr>
+                <td width="30%" align="center">
+                    @Html.ActionLink("Info »", "Details", "Guest", new { id = element.AppUserId }, new { @class = "btn btn-primary btn-sm" })
+                </td>
+                <td align="left" width="70%">
+                    <b>Guest User:</b> @element.Name.Trim() <br />
+                    <b>Estimate Count:</b> @element.EstimateCount <br />
+                </td>
+            </tr>
+}
+        </table>
+    </p>
