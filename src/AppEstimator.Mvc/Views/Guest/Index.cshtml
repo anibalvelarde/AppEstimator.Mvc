@@ -17,14 +17,26 @@
 @foreach (var element in Model)
 {
             <tr>
-                <td width="30%" align="center">
-                    @Html.ActionLink("Info »", "Details", "Guest", new { id = element.AppUserId }, new { @class = "btn btn-primary btn-sm" })
-                </td>
-                <td align="left" width="70%" colspan="2">
-                    <b>Guest User:</b> @element.Name.Trim() <br />
-                    <b>Estimate Count:</b> @element.EstimateCount <br />
+                <td colspan="3" style="vertical-align:middle;">
+                    <div class="panel panel-primary">
+                        <div class="panel panel-body">
+                            <table style="width:100%">
+                                <tr>
+                                    <td width="15%" style="vertical-align:middle;text-align:center">
+                                        <h4>Guest User:</h4> @element.Name.Trim()
+                                    </td>
+                                    <td width="70%" style="vertical-align:middle;text-align:center">
+                                        <b>Estimate Count:</b> @element.EstimateCount <br />
+                                    </td>
+                                    <td width="15%" style="vertical-align:middle;text-align:right">
+                                        @Html.ActionLink("Info »", "Details", "Guest", new { id = element.AppUserId }, new { @class = "btn btn-primary btn-sm" })
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
                 </td>
             </tr>
-}
+}    
         </table>
     </p>

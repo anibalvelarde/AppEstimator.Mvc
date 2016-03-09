@@ -39,12 +39,11 @@
             </td>
         </tr>
         <tr>
-            <td colspan="3" align="center">
+            <td colspan="3" align="center" style="border-spacing:0;">
                 <table class="table">
                     <thead>
                         <tr class="info">
-                            <th style="text-align:left">@string.Format("{0} Estimates On Record Found", Model.Estimates.Count)</th>
-                            <th style="text-align:right">Action</th>
+                            <th colspan="2" style="text-align:left">@string.Format("Found {0} estimates for this user.", Model.Estimates.Count)</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -61,13 +60,26 @@
                             foreach (var estimate in Model.Estimates)
                             {
                                 <tr>
-                                    <td>
-                                        <b>Project:</b> @estimate.ProjectName.Trim() <br />
-                                        <b>UCP Score:</b> ucp-score-here <br />
-                                        <b>Total Effort (hrs.):</b> total-hours-here
-                                    </td>
-                                    <td align="right" valign="middle">
-                                        @Html.ActionLink("Edit »", "Details", "Estimate", new { id = estimate.EstimateId }, new { @class = "btn btn-primary btn-sm" })
+                                    <td colspan="2" style="vertical-align:middle;text-align:left">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                <b>Project:</b> @estimate.ProjectName.Trim() <br />
+                                            </div>
+                                            <div class="panel-body">
+                                                <table style="width:100%">
+                                                    <tr>
+                                                        <td width="85%" style="vertical-align:middle;text-align:left">
+                                                            <b>UCP Score:</b> @estimate.Ucp <br />
+                                                            <b>Total Effort (hrs.):</b> @estimate.Effort <br />
+                                                            <b>Last Update:</b> @estimate.LastUpdatedOn.ToLocalTime().ToLongDateString() @estimate.LastUpdatedOn.ToLongTimeString()
+                                                        </td>
+                                                        <td width="15%" style="vertical-align:middle;text-align:right">
+                                                            @Html.ActionLink("Edit »", "Details", "Estimate", new { id = estimate.EstimateId }, new { @class = "btn btn-primary btn-sm" })
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             }
