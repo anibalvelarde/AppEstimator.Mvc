@@ -306,6 +306,7 @@
     <Content Include="Views\Guest\Index.cshtml" />
     <Content Include="Views\Guest\Details.cshtml" />
     <Content Include="Views\Estimate\Details.cshtml" />
+    <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
