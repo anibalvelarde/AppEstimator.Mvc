@@ -1,4 +1,5 @@
 ﻿using AppEstimator.Web.Common.Security;
+using AppEstimator.Mvc.Extensions;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,8 @@ namespace AppEstimator.Mvc.Services
 
         private void SetBasicUriElements()
         {
-            if(_userSession.RequestUri.Host.Contains("localhost"))
+            string forceAzureCall = (ConfigurationManager.AppSettings["ForceAzureApiCall"]);
+            if(_userSession.RequestUri.Host.Contains("localhost") && !forceAzureCall.ToBoolean())
             {
                 this.Scheme = "http";
                 this.Host = _userSession.RequestUri.Host;
