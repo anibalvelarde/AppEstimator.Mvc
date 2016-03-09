@@ -3,40 +3,37 @@
 @{
     ViewBag.Title = "Pick a Guest User:";
 }
-
-    <p>
-        <table class="table">
-            <tr class="info">
-                <td colspan="2" width="85%" style="vertical-align:middle">
-                    <h2>@ViewBag.Title</h2>
-                </td>
-                <td width="15%" style="vertical-align:middle;text-align:right">
-                    @Html.ActionLink("« Back", "Index", "Home", null, new { @class = "btn btn-primary btn-sm" })
-                </td>
-            </tr>
+<table class="table">
+    <tr class="info">
+        <td colspan="2" width="85%" style="vertical-align:middle">
+            <h2>@ViewBag.Title</h2>
+        </td>
+        <td width="15%" style="vertical-align:middle;text-align:right">
+            @Html.ActionLink("« Back", "Index", "Home", null, new { @class = "btn btn-primary btn-sm" })
+        </td>
+    </tr>
 @foreach (var element in Model)
 {
-            <tr>
-                <td colspan="3" style="vertical-align:middle;">
-                    <div class="panel panel-primary">
-                        <div class="panel panel-heading">
-                            <strong>Guest User:</strong> @element.Name.Trim()
-                        </div>
-                        <div class="panel panel-body">
-                            <table style="width:100%">
-                                <tr>
-                                    <td width="85%" style="vertical-align:middle;text-align:left">
-                                        <b>Estimates for this user:</b> @element.EstimateCount <br />
-                                    </td>
-                                    <td width="15%" style="vertical-align:middle;text-align:right">
-                                        @Html.ActionLink("Info »", "Details", "Guest", new { id = element.AppUserId }, new { @class = "btn btn-primary btn-sm" })
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </td>
-            </tr>
+    <tr>
+        <td colspan="3" style="vertical-align:middle;">
+            <div class="panel panel-primary">
+                <div class="panel panel-heading">
+                    <strong>Guest User:</strong> @element.Name.Trim()
+                </div>
+                <div class="panel panel-body">
+                    <table style="width:100%">
+                        <tr>
+                            <td width="85%" style="vertical-align:middle;text-align:left">
+                                <b>Estimates for this user:</b> @element.EstimateCount <br />
+                            </td>
+                            <td width="15%" style="vertical-align:middle;text-align:right">
+                                @Html.ActionLink("Info »", "Details", "Guest", new { id = element.AppUserId }, new { @class = "btn btn-primary btn-sm" })
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </td>
+    </tr>
 }    
-        </table>
-    </p>
+</table>

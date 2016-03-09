@@ -3,21 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AppEstimator.Web.Api.Models;
+using AppEstimator.Mvc.Services;
+using System.Net.Http;
+using AppEstimator.Mvc.Models;
 
 namespace AppEstimator.Mvc.Controllers
 {
-    public class EstimateController : Controller
+    public class EstimateController : AppEstimatorBaseController
     {
-        // GET: Estimate
-        public ActionResult Index()
+        public EstimateController(IApiUrlBase api)
+            :base(api)
         {
-            return View();
+            // based on REST Api principles, the default Api resource for this controller is the Estimate
+            this.API.SetApiResource("estimates");
         }
 
         // GET: Estimate/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var estimate = this.API.ExecuteOperation<Estimate>(string.Format("/{0}", id), HttpMethod.Get);
+            var vm = new EstimateViewModel(estimate);
+            return View(vm);
         }
 
         // GET: Estimate/Create

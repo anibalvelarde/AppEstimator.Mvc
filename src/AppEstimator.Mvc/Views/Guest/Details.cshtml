@@ -4,95 +4,92 @@
     ViewBag.Title = "Guest User Details:";
 }
 
-<p>
-    <table class="table">
-        <tr class="info">
-            <td colspan="2" width="85%" style="vertical-align:middle">
-                <h2>@ViewBag.Title</h2>
-            </td>
-            <td width="15%" style="vertical-align:middle;text-align:right">
-                @Html.ActionLink("« Back", "Index", "Guest", null, new { @class = "btn btn-primary btn-sm" })
-            </td>
-        </tr>
-        <tr>
-            <td width="30%" align="right">
-                <b>User Id:</b>
-            </td>
-            <td align="left" width="70%" colspan="2">
-                @Model.User.AppUserId
-            </td>
-        </tr>
-        <tr>
-            <td width="30%" align="right">
-                <b>User Name:</b>
-            </td>
-            <td align="left" width="70%" colspan="2">
-                @Model.User.Name
-            </td>
-        </tr>
-        <tr>
-            <td width="30%" align="right">
-                <b>App Estimator User Id:</b>
-            </td>
-            <td align="left" width="70%" colspan="2">
-                @Model.User.GitHubId.Trim()
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3" align="center" style="border-spacing:0;">
-                <table class="table">
-                    <thead>
-                        <tr class="info">
-                            <th colspan="2" style="text-align:left">@string.Format("Found {0} estimates for this user.", Model.Estimates.Count)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (Model.Estimates.Count.Equals(0))
+<table class="table">
+    <tr class="info">
+        <td colspan="2" width="85%" style="vertical-align:middle">
+            <h2>@ViewBag.Title</h2>
+        </td>
+        <td width="15%" style="vertical-align:middle;text-align:right">
+            @Html.ActionLink("« Back", "Index", "Guest", null, new { @class = "btn btn-primary btn-sm" })
+        </td>
+    </tr>
+    <tr>
+        <td width="30%" align="right">
+            <b>User Id:</b>
+        </td>
+        <td align="left" width="70%" colspan="2">
+            @Model.User.AppUserId
+        </td>
+    </tr>
+    <tr>
+        <td width="30%" align="right">
+            <b>User Name:</b>
+        </td>
+        <td align="left" width="70%" colspan="2">
+            @Model.User.Name
+        </td>
+    </tr>
+    <tr>
+        <td width="30%" align="right">
+            <b>App Estimator User Id:</b>
+        </td>
+        <td align="left" width="70%" colspan="2">
+            @Model.User.GitHubId.Trim()
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" align="center" style="border-spacing:0;">
+            <table class="table">
+                <thead>
+                    <tr class="info">
+                        <th colspan="2" style="text-align:left">@string.Format("Found {0} estimates for this user.", Model.Estimates.Count)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Estimates.Count.Equals(0))
+                    {
+                            <tr class="warning">
+                                <td colspan="2" align="center">
+                                    <h5>No Estimates have been defined yet for this user.</h5>
+                                </td>
+                            </tr>
+                    }
+                    else
+                    {
+                        foreach (var estimate in Model.Estimates)
                         {
-                                <tr class="warning">
-                                    <td colspan="2" align="center">
-                                        <h5>No Estimates have been defined yet for this user.</h5>
-                                    </td>
-                                </tr>
-                        }
-                        else
-                        {
-                            foreach (var estimate in Model.Estimates)
-                            {
-                                <tr>
-                                    <td colspan="2" style="vertical-align:middle;text-align:left">
-                                        <div class="panel panel-primary">
-                                            <div class="panel-heading">
-                                                <b>Project:</b> @estimate.ProjectName.Trim() <br />
-                                            </div>
-                                            <div class="panel-body">
-                                                <table style="width:100%">
-                                                    <tr>
-                                                        <td width="85%" style="vertical-align:middle;text-align:left">
-                                                            <b>UCP Score:</b> @estimate.Ucp <br />
-                                                            <b>Total Effort (hrs.):</b> @estimate.Effort <br />
-                                                            <b>Last Update:</b> @estimate.LastUpdatedOn.ToLocalTime().ToLongDateString() @estimate.LastUpdatedOn.ToLongTimeString()
-                                                        </td>
-                                                        <td width="15%" style="vertical-align:middle;text-align:right">
-                                                            @Html.ActionLink("Edit »", "Details", "Estimate", new { id = estimate.EstimateId }, new { @class = "btn btn-primary btn-sm" })
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
+                            <tr>
+                                <td colspan="2" style="vertical-align:middle;text-align:left">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <b>Project:</b> @estimate.ProjectName.Trim() <br />
                                         </div>
-                                    </td>
-                                </tr>
-                            }
+                                        <div class="panel-body">
+                                            <table style="width:100%">
+                                                <tr>
+                                                    <td width="85%" style="vertical-align:middle;text-align:left">
+                                                        <b>UCP Score:</b> @estimate.Ucp <br />
+                                                        <b>Total Effort (hrs.):</b> @estimate.Effort <br />
+                                                        <b>Last Update:</b> @estimate.LastUpdatedOn.ToLocalTime().ToLongDateString() @estimate.LastUpdatedOn.ToLongTimeString()
+                                                    </td>
+                                                    <td width="15%" style="vertical-align:middle;text-align:right">
+                                                        @Html.ActionLink("Edit »", "Details", "Estimate", new { id = estimate.EstimateId }, new { @class = "btn btn-primary btn-sm" })
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
                         }
-                    </tbody>
-                </table>
-            </td>
-        </tr>
-        <tr class="info">
-            <td colspan="3" style="vertical-align:middle;text-align:right">
-                @Html.ActionLink("« Back", "Index", "Guest", null, new { @class = "btn btn-primary btn-sm" })
-            </td>
-        </tr>
-    </table>
-</p>
-
+                    }
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    <tr class="info">
+        <td colspan="3" style="vertical-align:middle;text-align:right">
+            @Html.ActionLink("« Back", "Index", "Guest", null, new { @class = "btn btn-primary btn-sm" })
+        </td>
+    </tr>
+</table>
