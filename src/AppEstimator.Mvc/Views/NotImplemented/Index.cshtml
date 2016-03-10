@@ -1,0 +1,24 @@
+﻿@model AppEstimator.Mvc.Models.NotImplementedViewModel
+
+@{
+    ViewBag.Title = "NotImplemented";
+}
+<div class="panel panel-danger">
+    <div class="panel panel-heading">
+        <h2>Feature has not been implemented yet.</h2>
+    </div>
+    <div class="panel panel-body">
+        <p>
+            <h2 class="alert">Under Construction!</h2>
+        </p>
+
+        <p>
+            This feature has not been implemented yet!
+        </p>
+    </div>
+    <div class="panel panel-footer">
+        <p>
+            @Html.ActionLink("Back to previous page", null, null, null, new { href = Model.RedirectUrl })
+        </p>
+    </div>
+</div>

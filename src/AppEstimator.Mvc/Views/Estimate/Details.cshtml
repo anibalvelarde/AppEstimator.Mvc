@@ -1,15 +1,137 @@
-﻿@{
-    ViewBag.Title = "Guest User Details:";
+﻿@model AppEstimator.Mvc.Models.EstimateViewModel
+@{
+    ViewBag.Title = "Estimate Details:";
 }
-
-<p>
-    <h2 class="alert">Under Construction!</h2>
-</p>
-
-<p>
-    This feature has not been implemented yet!
-</p>
-
-<p>
-    @Html.ActionLink("« Back To Selecting a Sample User", "Index", "Guest", null, new { @class = "btn btn-info" })
-</p>
+<table class="table">
+    <tr class="info">
+        <td width="85%" style="vertical-align:middle">
+            <h2>@ViewBag.Title</h2>
+        </td>
+        <td width="15%" style="vertical-align:middle;text-align:right">
+            @Html.ActionLink("« Back", "Index", "Home", string.Format("{0}", Model.CurrentEstimate.User.AppUserId), new { @class = "btn btn-primary btn-sm" })
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="align-content:stretch">
+                <div class="@(Model.IsSetupCorrectly ? "panel panel-primary" : "panel panel-warning")">
+                   <div class="panel panel-heading">
+                        <strong>Project:</strong> @( Model.IsSetupCorrectly ? Model.CurrentEstimate.ProjectName : string.Format("{0} [It has incomplete or missing info.]", Model.CurrentEstimate.ProjectName))
+                    </div>
+                    <div class="panel panel-body">
+                        <table class="table" style="width:100%">
+                            <tr>
+                                <td width="20%" style="vertical-align:middle;text-align:right">
+                                    Created on:
+                                </td>
+                                <td width="80%" style="vertical-align:middle;text-align:left">
+                                    @string.Format("{0} @ {1}", Model.CurrentEstimate.CreatedOnUTC.ToLocalTime().ToShortDateString(), Model.CurrentEstimate.CreatedOnUTC.ToLocalTime().ToShortTimeString())
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align:middle;text-align:right">
+                                    Last Updated on:
+                                </td>
+                                <td style="vertical-align:middle;text-align:left">
+                                    @string.Format("{0} @ {1}", Model.CurrentEstimate.LastUpdatedOn.Value.ToLocalTime().ToShortDateString(), Model.CurrentEstimate.LastUpdatedOn.Value.ToLocalTime().ToShortTimeString())
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align:middle;text-align:right">
+                                    @Html.Raw(string.Format("This project has [{0}] Actors defined.", Model.CurrentEstimate.Actors.Count))
+                                </td>
+                                <td style="vertical-align:middle;text-align:left">
+                                    @{
+                                    if (Model.IsMissingActors)
+                                    {
+                                        // @Html.ActionLink("Add Actors", "addActors", string.Format("{0}", Model.CurrentEstimate.EstimateId), new { @class = "btn btn-primary btn-sm btn-block" })
+                                        @Html.ActionLink("Add Actors", "index", "NotImplemented", string.Format("{0}", Model.CurrentEstimate.EstimateId), new { @class = "btn btn-primary btn-sm btn-block" })
+                                    }
+                                    else
+                                    {
+                                        //  @Html.ActionLink("Edit Actors", "editActors", Model)
+                                        @Html.ActionLink("Edit Actors", "index", "NotImplemented", Model)
+                                    }
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align:middle;text-align:right">
+                                    @Html.Raw(string.Format("This project has [{0}] Use Cases defined.", Model.CurrentEstimate.UseCases.Count))
+                                </td>
+                                <td style="vertical-align:middle;text-align:left">
+                                    @{
+                                    if (Model.IsMissingUseCases)
+                                    {
+                                        // @Html.ActionLink("Add Use Cases", "addUseCases", string.Format("{0}", Model.CurrentEstimate.EstimateId), new { @class = "btn btn-primary btn-sm btn-block" })
+                                        @Html.ActionLink("Add Use Cases", "index", "NotImplemented", string.Format("{0}", Model.CurrentEstimate.EstimateId), new { @class = "btn btn-primary btn-sm btn-block" })
+                                    }
+                                    else
+                                    {
+                                        // @Html.ActionLink("Edit Use Cases", "editUseCases", Model)
+                                        @Html.ActionLink("Edit Use Cases", "index", "NotImplemented")
+                                    }
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align:middle;text-align:right">
+                                    @{
+                                    if(Model.IsMissingTechFacs)
+                                    {
+                                        @Html.Raw("Define Tech Factors")
+                                    }
+                                    else
+                                    {
+                                        @Html.Raw("Technical Factors:")
+                                    }
+                                    }
+                                </td>
+                                <td style="vertical-align:middle;text-align:left">
+                                    @{
+                                    if(Model.IsMissingTechFacs)
+                                    {
+                                        // @Html.ActionLink("Setup", "initFactors", string.Format("{0}", Model.CurrentEstimate.EstimateId), new { @class = "btn btn-primary btn-sm btn-block" })
+                                        @Html.ActionLink("Setup", "index", "NotImplemented", string.Format("{0}", Model.CurrentEstimate.EstimateId), new { @class = "btn btn-primary btn-sm btn-block" })
+                                    }
+                                    else
+                                    {
+                                        // @Html.ActionLink("Edit", "editTechFacs", Model)
+                                        @Html.ActionLink("Edit", "index", "NotImplemented", Model)
+                                    }
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align:middle;text-align:right">
+                                    @{
+                                    if (Model.IsMissingEnvFacs)
+                                    {
+                                        @Html.Raw("Define Environmental Factors")
+                                    }
+                                    else
+                                    {
+                                        @Html.Raw("Environmental Factors:")
+                                    }
+                                    }
+                                </td>
+                                <td style="vertical-align:middle;text-align:left">
+                                    @{
+                                    if (Model.IsMissingEnvFacs)
+                                    {
+                                        //  @Html.ActionLink("Setup", "initFactors", string.Format("{0}", Model.CurrentEstimate.EstimateId), new { @class = "btn btn-primary btn-sm btn-block" })
+                                        @Html.ActionLink("Setup", "index", "NotImplemented", string.Format("{0}", Model.CurrentEstimate.EstimateId), new { @class = "btn btn-primary btn-sm btn-block" })
+                                    }
+                                    else
+                                    {
+                                        // @Html.ActionLink("Edit", "editEnvFacs", Model)
+                                        @Html.ActionLink("Edit", "index", "NotImplemented", Model)
+                                    }
+                                    }
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+        </td>
+    </tr>
+</table>

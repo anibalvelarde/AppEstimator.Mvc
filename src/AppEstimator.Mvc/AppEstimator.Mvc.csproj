@@ -219,6 +219,7 @@
     <Compile Include="Controllers\GuestController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NotImplementedController.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -228,6 +229,7 @@
     <Compile Include="Models\GuestUserViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\NotImplementedViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ApiUrlBase.cs" />
     <Compile Include="Services\IApiUrlBase.cs" />
@@ -309,6 +311,7 @@
     <Content Include="Views\Guest\Details.cshtml" />
     <Content Include="Views\Estimate\Details.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\NotImplemented\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
